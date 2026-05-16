@@ -1,0 +1,57 @@
+[
+    {
+  "_id": {
+    "$oid": "69d665499b1c61f4744bd585"
+  },
+  "title": "sushi",
+  "category": "Food",
+  "amount": 50,
+  "date": "2026-04-06",
+  "description": "Dinner with friends\n"
+},
+
+{
+  "_id": {
+    "$oid": "69d6657a9b1c61f4744bd586"
+  },
+  "title": "rent",
+  "category": "Housing",
+  "amount": 800,
+  "date": "2026-04-02",
+  "description": ""
+},
+
+{
+  "_id": {
+    "$oid": "69d665ad9b1c61f4744bd587"
+  },
+  "title": "rent",
+  "category": "Housing",
+  "amount": 800,
+  "date": "2026-03-19",
+  "description": ""
+},
+
+{
+  "_id": {
+    "$oid": "69d665c69b1c61f4744bd588"
+  },
+  "title": "train",
+  "category": "Transport",
+  "amount": 10,
+  "date": "2026-04-07",
+  "description": "to school"
+},
+
+{
+  "_id": {
+    "$oid": "69d665f59b1c61f4744bd589"
+  },
+  "title": "rent",
+  "category": "Housing",
+  "amount": 800,
+  "date": "2026-03-05",
+  "description": ""
+}
+
+]

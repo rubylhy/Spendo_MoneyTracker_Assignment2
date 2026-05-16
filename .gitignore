@@ -1,0 +1,12 @@
+# Backend secrets — never upload these
+backend/.env
+backend/.venv/
+backend/__pycache__/
+backend/routers/__pycache__/
+
+# Frontend dependencies — too large to upload
+frontend/node_modules/
+frontend/.env
+
+# Mac system file
+.DS_Store
