@@ -6,125 +6,190 @@ import jwt
 import os
 from dotenv import load_dotenv
 
+# Loads environment variables from the .env file
+# This allows sensitive information such as secret keys
+# to be stored outside the source code
 load_dotenv()
 
-# --- Configuration (Slide 11) ---
-SECRET_KEY = os.getenv("SECRET_KEY", "your-very-secret-key")  # Keep this safe!
-ALGORITHM  = "HS256"       # generates the signature based on header, payload, secret key
+
+# ---------------------------------------------------------------
+# CONFIGURATION
+# ---------------------------------------------------------------
+
+# Secret key used to sign and verify JWT tokens
+# Should be kept private and stored securely
+SECRET_KEY = os.getenv("SECRET_KEY", "your-very-secret-key")
+
+# HS256 is the hashing algorithm used to generate
+# the token signature
+ALGORITHM = "HS256"
+
+# Token validity duration (60 minutes)
 ACCESS_TOKEN_EXPIRE_MINUTES = 60
 
-# Tells FastAPI where the login endpoint lives (Slide 11)
-# So FastAPI knows to look for the token at /users/login
+
+# Defines the login endpoint used for OAuth2 authentication
+# FastAPI automatically looks for Bearer tokens from this route
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/users/login")
 
 
 # ---------------------------------------------------------------
-# PASSWORD HASHING  (Slide 11)
+# PASSWORD HASHING
 # ---------------------------------------------------------------
 
 def get_password_hash(password: str) -> str:
     """
-    Hash a raw password into a scrambled string using the bcrypt algorithm.
-    We never store plain text passwords in the database.
+    Converts a plain text password into a secure hashed value.
+    Passwords should never be stored directly in the database.
     """
-    pwd_bytes = password.encode("utf-8")    # Step 1: encode to bytes
-    salt      = bcrypt.gensalt(rounds=12)   # Step 2: generate salt
-    # 2^12 iterations — strong enough without being too slow
-    hashed    = bcrypt.hashpw(pwd_bytes, salt)  # Step 3: hash the password
-    return hashed.decode("utf-8")           # Step 4: decode back to string for MongoDB
+
+    # Convert string into bytes because bcrypt works with byte data
+    pwd_bytes = password.encode("utf-8")
+
+    # Generate a random salt for stronger security
+    # Salt ensures identical passwords produce different hashes
+    salt = bcrypt.gensalt(rounds=12)
+
+    # Create the hashed password
+    hashed = bcrypt.hashpw(pwd_bytes, salt)
+
+    # Convert bytes back into string format for storage
+    return hashed.decode("utf-8")
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     """
-    Convert the typed password into hash and check if it matches
-    the hashed_password stored in the database.
+    Compares a user's entered password with the
+    hashed password stored in the database.
     """
-    pwd_bytes    = plain_password.encode("utf-8")
+
+    # Convert both values into bytes
+    pwd_bytes = plain_password.encode("utf-8")
     hashed_bytes = hashed_password.encode("utf-8")
-    return bcrypt.checkpw(pwd_bytes, hashed_bytes)  # securely compare
+
+    # Securely compare the entered password
+    return bcrypt.checkpw(pwd_bytes, hashed_bytes)
 
 
 # ---------------------------------------------------------------
-# JWT TOKEN CREATION  (Slide 12)
+# JWT TOKEN CREATION
 # ---------------------------------------------------------------
 
-def create_access_token(data: dict, expires_delta: timedelta = None) -> str:
+def create_access_token(data: dict,
+                        expires_delta: timedelta = None) -> str:
     """
-    Create a token using username/id, expiry time, and the secret key.
-    NOTE: Never put a password inside a JWT — JWTs are public (Base64 is not encryption)!
+    Creates a JWT token containing user information
+    and an expiration timestamp.
     """
+
+    # Create a copy so original data is unchanged
     to_encode = data.copy()
-    expire    = datetime.now(timezone.utc) + (
-        expires_delta or timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+
+    # Set expiry time
+    expire = datetime.now(timezone.utc) + (
+        expires_delta or
+        timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     )
+
+    # Add expiration into token payload
     to_encode.update({"exp": expire})
 
-    # jwt.encode() from pyjwt — the specified algorithm generates
-    # the signature based on the header, payload, and secret key
-    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    # Generate token signature using secret key
+    encoded_jwt = jwt.encode(
+        to_encode,
+        SECRET_KEY,
+        algorithm=ALGORITHM
+    )
+
     return encoded_jwt
 
 
 # ---------------------------------------------------------------
-# VERIFICATION FUNCTION  (Slide 13)
+# TOKEN VERIFICATION
 # ---------------------------------------------------------------
 
-async def get_current_user(token: str = Depends(oauth2_scheme)):
+async def get_current_user(
+    token: str = Depends(oauth2_scheme)
+):
     """
-    Dependency: grabs the token from the Authorization header,
-    decodes it using SECRET_KEY, and throws a 401 error if the
-    token is expired or fake.
+    Retrieves the token from the Authorization header,
+    verifies its validity, and extracts user information.
 
-    If the token is valid, extracts user_id and role from the token.
-
-    HOW TO USE on any protected route (Slide 14):
-        async def my_route(current_user = Depends(get_current_user)):
+    This function can be reused in protected routes
+    to ensure only authenticated users gain access.
     """
+
     try:
-        # Verify signature and expiration (Slide 13)
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
 
-        # Extract user_id from the token payload
-        user_id: str = payload.get("sub")
-        role: str    = payload.get("role")
+        # Decode token and verify signature + expiration
+        payload = jwt.decode(
+            token,
+            SECRET_KEY,
+            algorithms=[ALGORITHM]
+        )
 
+        # Extract information stored in token
+        user_id = payload.get("sub")
+        role = payload.get("role")
+
+        # Ensure required values exist
         if user_id is None:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Invalid token payload",
-                headers={"WWW-Authenticate": "Bearer"},
+                headers={
+                    "WWW-Authenticate": "Bearer"
+                },
             )
-        return {"user_id": user_id, "role": role}
 
+        # Return authenticated user details
+        return {
+            "user_id": user_id,
+            "role": role
+        }
+
+    # Token has passed expiry time
     except jwt.ExpiredSignatureError:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Token has expired",
-            headers={"WWW-Authenticate": "Bearer"},
+            headers={
+                "WWW-Authenticate": "Bearer"
+            },
         )
+
+    # Token is invalid or modified
     except jwt.PyJWTError:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Could not validate credentials",
-            headers={"WWW-Authenticate": "Bearer"},
+            headers={
+                "WWW-Authenticate": "Bearer"
+            },
         )
 
 
 # ---------------------------------------------------------------
-# ADMIN GUARD  (Slide 14 — role-based protection)
+# ROLE-BASED ACCESS CONTROL
 # ---------------------------------------------------------------
 
-async def require_admin(current_user: dict = Depends(get_current_user)):
+async def require_admin(
+    current_user: dict = Depends(
+        get_current_user
+    )
+):
     """
-    Dependency: only allows admin users through.
-    Runs get_current_user first, then checks the role.
+    Restricts access to administrator users only.
 
-    HOW TO USE on admin-only routes:
-        async def admin_route(current_user = Depends(require_admin)):
+    First checks whether the user is authenticated,
+    then verifies their role.
     """
+
     if current_user["role"] != "admin":
+
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Admins only"
         )
+
     return current_user
