@@ -1,0 +1,252 @@
+[
+    {
+  "_id": {
+    "$oid": "6a055142b16e992069de0348"
+  },
+  "user_id": "6a055142b16e992069de0347",
+  "username": "ruby",
+  "action": "register",
+  "detail": null,
+  "timestamp": "2026-05-14T04:36:18.461941+00:00"
+},
+{
+  "_id": {
+    "$oid": "6a0551e1b16e992069de0349"
+  },
+  "user_id": "6a055142b16e992069de0347",
+  "username": "ruby",
+  "action": "login",
+  "detail": null,
+  "timestamp": "2026-05-14T04:38:57.737680+00:00"
+},
+{
+  "_id": {
+    "$oid": "6a05553eb16e992069de034a"
+  },
+  "user_id": "6a055142b16e992069de0347",
+  "username": "ruby",
+  "action": "login",
+  "detail": null,
+  "timestamp": "2026-05-14T04:53:18.792640+00:00"
+},
+{
+  "_id": {
+    "$oid": "6a055602b16e992069de034b"
+  },
+  "user_id": "6a055142b16e992069de0347",
+  "username": "ruby",
+  "action": "login",
+  "detail": null,
+  "timestamp": "2026-05-14T04:56:34.695509+00:00"
+},
+{
+  "_id": {
+    "$oid": "6a05560eb16e992069de034c"
+  },
+  "user_id": "6a055142b16e992069de0347",
+  "username": "ruby",
+  "action": "login",
+  "detail": null,
+  "timestamp": "2026-05-14T04:56:46.392508+00:00"
+},
+{
+  "_id": {
+    "$oid": "6a05565fb16e992069de034e"
+  },
+  "user_id": "6a055142b16e992069de0347",
+  "username": "ruby",
+  "action": "create_expense",
+  "detail": "Created: Coffee $5.5",
+  "timestamp": "2026-05-14T04:58:07.827963+00:00"
+},
+{
+  "_id": {
+    "$oid": "6a055c4ab16e992069de034f"
+  },
+  "user_id": "6a055142b16e992069de0347",
+  "username": "ruby",
+  "action": "login",
+  "detail": null,
+  "timestamp": "2026-05-14T05:23:22.897363+00:00"
+},
+{
+  "_id": {
+    "$oid": "6a055cabb16e992069de0350"
+  },
+  "user_id": "6a055142b16e992069de0347",
+  "username": "ruby",
+  "action": "logout",
+  "detail": null,
+  "timestamp": "2026-05-14T05:24:59.339857+00:00"
+},
+{
+  "_id": {
+    "$oid": "6a07eb05b16e992069de0351"
+  },
+  "user_id": "6a055142b16e992069de0347",
+  "username": "ruby",
+  "action": "login",
+  "detail": null,
+  "timestamp": "2026-05-16T03:56:53.266519+00:00"
+},
+{
+  "_id": {
+    "$oid": "6a07eb31b16e992069de0353"
+  },
+  "user_id": "6a055142b16e992069de0347",
+  "username": "ruby",
+  "action": "create_expense",
+  "detail": "Created: dinner $100.0",
+  "timestamp": "2026-05-16T03:57:37.406678+00:00"
+},
+{
+  "_id": {
+    "$oid": "6a07eb41b16e992069de0354"
+  },
+  "user_id": "6a055142b16e992069de0347",
+  "username": "ruby",
+  "action": "logout",
+  "detail": null,
+  "timestamp": "2026-05-16T03:57:53.901573+00:00"
+},
+{
+  "_id": {
+    "$oid": "6a08116987a83bd3f8db7582"
+  },
+  "user_id": "6a055142b16e992069de0347",
+  "username": "ruby",
+  "action": "login",
+  "detail": null,
+  "timestamp": "2026-05-16T06:40:41.833703+00:00"
+},
+{
+  "_id": {
+    "$oid": "6a08136b7b947cf651da61c5"
+  },
+  "user_id": "6a055142b16e992069de0347",
+  "username": "ruby",
+  "action": "create_expense",
+  "detail": "Created: lunch $8.0",
+  "timestamp": "2026-05-16T06:49:15.370736+00:00"
+},
+{
+  "_id": {
+    "$oid": "6a08142b7b947cf651da61c6"
+  },
+  "user_id": "6a055142b16e992069de0347",
+  "username": "ruby",
+  "action": "delete_expense",
+  "detail": "Deleted: lunch $8.0",
+  "timestamp": "2026-05-16T06:52:27.122428+00:00"
+},
+{
+  "_id": {
+    "$oid": "6a093133a689e44ba78bad72"
+  },
+  "user_id": "6a055142b16e992069de0347",
+  "username": "ruby",
+  "action": "login",
+  "detail": null,
+  "timestamp": "2026-05-17T03:08:35.098939+00:00"
+},
+{
+  "_id": {
+    "$oid": "6a0931bfa689e44ba78bad74"
+  },
+  "user_id": "6a055142b16e992069de0347",
+  "username": "ruby",
+  "action": "create_expense",
+  "detail": "Created: rent $400.0",
+  "timestamp": "2026-05-17T03:10:55.016529+00:00"
+},
+{
+  "_id": {
+    "$oid": "6a0931c9a689e44ba78bad75"
+  },
+  "user_id": "6a055142b16e992069de0347",
+  "username": "ruby",
+  "action": "delete_expense",
+  "detail": "Deleted: rent $400.0",
+  "timestamp": "2026-05-17T03:11:05.711620+00:00"
+},
+{
+  "_id": {
+    "$oid": "6a0931dba689e44ba78bad77"
+  },
+  "user_id": "6a055142b16e992069de0347",
+  "username": "ruby",
+  "action": "create_expense",
+  "detail": "Created: rent $600.0",
+  "timestamp": "2026-05-17T03:11:23.579667+00:00"
+},
+{
+  "_id": {
+    "$oid": "6a0931f2a689e44ba78bad78"
+  },
+  "user_id": "6a055142b16e992069de0347",
+  "username": "ruby",
+  "action": "delete_expense",
+  "detail": "Deleted: rent $600.0",
+  "timestamp": "2026-05-17T03:11:46.208592+00:00"
+},
+{
+  "_id": {
+    "$oid": "6a0931f9a689e44ba78bad79"
+  },
+  "user_id": "6a055142b16e992069de0347",
+  "username": "ruby",
+  "action": "logout",
+  "detail": null,
+  "timestamp": "2026-05-17T03:11:53.847977+00:00"
+},
+{
+  "_id": {
+    "$oid": "6a093203a689e44ba78bad7a"
+  },
+  "user_id": "6a055142b16e992069de0347",
+  "username": "ruby",
+  "action": "login",
+  "detail": null,
+  "timestamp": "2026-05-17T03:12:03.667912+00:00"
+},
+{
+  "_id": {
+    "$oid": "6a09320ba689e44ba78bad7b"
+  },
+  "user_id": "6a055142b16e992069de0347",
+  "username": "ruby",
+  "action": "logout",
+  "detail": null,
+  "timestamp": "2026-05-17T03:12:11.699173+00:00"
+},
+{
+  "_id": {
+    "$oid": "6a093219a689e44ba78bad7c"
+  },
+  "user_id": "6a055142b16e992069de0347",
+  "username": "ruby",
+  "action": "login",
+  "detail": null,
+  "timestamp": "2026-05-17T03:12:25.013141+00:00"
+},
+{
+  "_id": {
+    "$oid": "6a0932b8a689e44ba78bad7e"
+  },
+  "user_id": "6a055142b16e992069de0347",
+  "username": "ruby",
+  "action": "create_expense",
+  "detail": "Created: rent  $400.0",
+  "timestamp": "2026-05-17T03:15:04.202293+00:00"
+},
+{
+  "_id": {
+    "$oid": "6a09379fa689e44ba78bad7f"
+  },
+  "user_id": "6a055142b16e992069de0347",
+  "username": "ruby",
+  "action": "logout",
+  "detail": null,
+  "timestamp": "2026-05-17T03:35:59.304243+00:00"
+}
+]

@@ -1,0 +1,24 @@
+[
+
+{
+  "_id": {
+    "$oid": "6a055142b16e992069de0347"
+  },
+  "username": "ruby",
+  "email": "ruby@test.com",
+  "password": "$2b$12$2bQqW7JWDY3Gur1X7VBDT.okgBRnmx.s27UXlHOv/x1gY.asTLT/e",
+  "role": "admin",
+  "created_at": "2026-05-14T04:36:18.424809+00:00"
+},
+{
+  "_id": {
+    "$oid": "6a0937dca689e44ba78bad80"
+  },
+  "username": "user001",
+  "email": "user001@gmail.com",
+  "password": "$2b$12$wg1qaXtNzfd6EXp0LEophu/dPBPPYGPg1cMniIkWG9h81b84gftwm",
+  "role": "user",
+  "created_at": "2026-05-17T03:37:00.056723+00:00"
+}
+
+]
