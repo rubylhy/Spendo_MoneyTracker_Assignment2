@@ -1,3 +1,4 @@
+// login and registration modal
 import { useState } from "react";
 
 // Centralised API URL — change once here if backend URL changes

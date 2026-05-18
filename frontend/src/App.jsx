@@ -1,3 +1,4 @@
+//auth state, routing, login/logout handlers
 import { useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LoginModal from "./components/LoginModal";

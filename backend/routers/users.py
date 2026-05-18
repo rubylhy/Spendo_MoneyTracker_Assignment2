@@ -1,3 +1,4 @@
+# register, login, logout, admin routes
 from fastapi import APIRouter, HTTPException, Depends, status
 from fastapi.security import OAuth2PasswordRequestForm  # Slide 12 — parses formData
 from bson import ObjectId

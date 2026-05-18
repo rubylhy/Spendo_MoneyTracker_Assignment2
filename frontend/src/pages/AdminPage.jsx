@@ -1,9 +1,13 @@
+//admin dashboard
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 // Centralised API URL — change once here if backend URL changes
 const API_URL = "http://127.0.0.1:8000";
 
 const AdminPage = ({ token }) => {
+
+  const navigate = useNavigate();
 
   // --- State declarations ---
   // useState is appropriate here as each value is independent
@@ -140,10 +144,21 @@ const AdminPage = ({ token }) => {
       <div className="max-w-5xl mx-auto">
 
         {/* Page title */}
-        <div className="mb-8">
-          <h1 className="text-2xl font-black text-gray-800">Admin Dashboard</h1>
-          <p className="text-sm text-gray-400 mt-1">Manage users and view activity logs</p>
-        </div>
+  <div className="mb-8 flex justify-between items-start">
+  <div>
+    <h1 className="text-2xl font-black text-gray-800">Admin Dashboard</h1>
+    <p className="text-sm text-gray-400 mt-1">
+      Manage users and view activity logs
+    </p>
+  </div>
+
+  <button
+    onClick={() => navigate("/")}
+    className="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-sm font-bold rounded-xl transition"
+  >
+    ← Back
+  </button>
+</div>
 
         {/* Stats row — quick overview numbers at the top */}
         <div className="grid grid-cols-2 gap-4 mb-8">

@@ -1,3 +1,4 @@
+//main expense tracker page
 import { useState, useEffect, useReducer, useRef } from 'react';
 
 // Centralised API URL — change once here if backend URL changes
