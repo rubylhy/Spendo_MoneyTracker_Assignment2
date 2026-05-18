@@ -15,6 +15,8 @@ help users understand their spending patterns.
 A secure login system ensures each user's data is private, 
 and an admin dashboard allows management of all user accounts and activity logs.
 
+app features: login-logout
+
 ## 2. Technical Stack and Dependencies
  
 ### Frontend
@@ -107,3 +109,4 @@ Spendo/
 |---|---|
 | Ruby Lee | `frontend/src/App.jsx`, `frontend/src/pages/Dashboard.jsx`, `frontend/src/pages/AdminPage.jsx`, `frontend/src/components/LoginModal.jsx`, `database/expenses.json`, `database/users.json`, `database/activity.json` |
 | Tracy Liu| `backend/main.py`, `backend/auth.py`, `backend/database.py`, `backend/models.py`, `backend/routers/users.py`, `backend/routers/expenses.py` |
+feature allocation..
